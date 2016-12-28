@@ -1,4 +1,4 @@
-const request = require( 'request-promise-native' ),
+const request = require( 'request' ),
   xml2js      = require( 'xml2js' );
 
 const versionUrlMap = {
@@ -50,24 +50,29 @@ function getVersionUrl( year = (new Date()).getFullYear(), version = versionUrlM
 
 function query( year, version, input ) {
 
-  return request
-    .get( {
+  return new Promise( ( resolve, reject ) => {
+
+    request.get( {
       url: getVersionUrl( year, version ),
       qs:  input
-    } )
-    .then( response => {
+    }, ( error, response, body ) => {
 
-      return new Promise( ( resolve, reject ) => {
-        xml2js.parseString( response, ( err, result ) => {
-          if ( err ) {
-            reject( err );
-          } else {
-            resolve( result );
-          }
-        } );
+      if ( error || response.statusCode != 200 ) {
+        return reject( [
+          error,
+          response
+        ] );
+      }
+
+      xml2js.parseString( body, ( error, result ) => {
+        if ( error ) {
+          return reject( error );
+        }
+        resolve( parseBMFResponse( result ) );
+
       } );
-    } )
-    .then( parseBMFResponse );
+    } );
+  } );
 }
 
 
