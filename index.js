@@ -36,6 +36,9 @@ const versionUrlMap = {
   ],
   2016: [
     'https://www.bmf-steuerrechner.de/interface/2016V1.jsp'
+  ],
+  2017: [
+    'https://www.bmf-steuerrechner.de/interface/LSt2017.jsp'
   ]
 };
 
@@ -45,7 +48,7 @@ function getVersionUrl( year = (new Date()).getFullYear(), version = versionUrlM
 }
 
 
-function query( input, year, version ) {
+function query( year, version, input ) {
 
   return request
     .get( {
