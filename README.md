@@ -52,3 +52,7 @@ maps year and possible version to https://www.bmf-steuerrechner.de/interface/sch
 
 #### parseBMFResponse
 is a helper function to translate the json we get after converting the xml response.
+
+
+## License
+This project is licensed under the terms of the MIT license.
