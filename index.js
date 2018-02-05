@@ -39,6 +39,9 @@ const versionUrlMap = {
   ],
   2017: [
     'https://www.bmf-steuerrechner.de/interface/LSt2017.jsp'
+  ],
+  2018: [
+    'https://www.bmf-steuerrechner.de/interface/LSt2018.jsp'
   ]
 };
 
