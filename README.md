@@ -1,24 +1,22 @@
 # bmf-steuerrechner-api
 Provides a javascript api to access the Lohn- und Einkommensteuerrechner by the  Bundesministerium der Finanzen.
-Reference: https://www.bmf-steuerrechner.de/index.jsp
+Reference: https://www.bmf-steuerrechner.de/interface/einganginterface.xhtml
 
-It exposes three endpoints:
+It exposes one endpoint:
 ```javascript
-function query( year, version, input )  {...}
-function getVersionUrl( year, version ) {...}
-function parseBMFResponse( response )   {...}
+exports = function(input, year, month = null) {...}
 ```
 
-#### query
-takes year, version (for some years, the BMF has published more than one calculation period), and input.
+#### signature
+takes input, year and month. For some years, the BMF has published more than one calculation period; otherwise month is optional. Months range is 1..12.
 input being a {} containing legal values for PAP input.
 e.g.:
 - Lohnzahlungszeitraum (LZZ) = Jahr
 - Einkommen (RE4) = 2500000 Cent
 - Steuerklasse (STKL) = 1
 ```javascript
-query( 2016, 0, { LZZ:1, STKL:1, RE4:2500000 } )
-.then( result => console.log( result ) );
+bmf( { LZZ:1, STKL:1, RE4:2500000 }, 2016 )
+  .then( result => console.log( result ) );
 ```
 yields
 ```javascript
@@ -46,13 +44,6 @@ yields
      WVFRBO: { value: '0', type: 'DBA' },
      WVFRBM: { value: '0', type: 'DBA' } } }
 ```
-
-#### getVersionUrl
-maps year and possible version to https://www.bmf-steuerrechner.de/interface/schnittstelle.jsp
-
-#### parseBMFResponse
-is a helper function to translate the json we get after converting the xml response.
-
 
 ## License
 This project is licensed under the terms of the MIT license.
