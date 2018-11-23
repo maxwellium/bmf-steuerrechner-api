@@ -28,8 +28,8 @@ yields
 ```javascript
 { jahr: '2016',
   eingaben:
-   { STKL: { value: '1', status: 'ok' },
-     LZZ: { value: '1', status: 'ok' },
+   { LZZ: { value: '1', status: 'ok' },
+     STKL: { value: '1', status: 'ok' },
      RE4: { value: '2500000', status: 'ok' } },
   ausgaben:
    { BK: { value: '0', type: 'STANDARD' },
