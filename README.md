@@ -2,21 +2,27 @@
 Provides a javascript api to access the Lohn- und Einkommensteuerrechner by the  Bundesministerium der Finanzen.
 Reference: https://www.bmf-steuerrechner.de/interface/einganginterface.xhtml
 
-It exposes one endpoint:
-```javascript
-exports = function(input, year, month = null) {...}
+It exposes the endpoint:
+```typescript
+export async function bmf(
+  input: {
+    [ k: string ]: number
+  },
+  year: number,
+  month?: number
+): Promise<BMFResponse>
 ```
 
 #### signature
 takes input, year and month. For some years, the BMF has published more than one calculation period; otherwise month is optional. Months range is 1..12.
 input being a {} containing legal values for PAP input.
 e.g.:
-- Lohnzahlungszeitraum (LZZ) = Jahr
-- Einkommen (RE4) = 2500000 Cent
+- Lohnzahlungszeitraum (LZZ) = 1 (Jahr)
+- Einkommen (RE4) = 2500000 (Cent)
 - Steuerklasse (STKL) = 1
 ```javascript
-bmf( { LZZ:1, STKL:1, RE4:2500000 }, 2016 )
-  .then( result => console.log( result ) );
+const result = await bmf( { LZZ:1, STKL:1, RE4:2500000 }, 2016 );
+console.log( result );
 ```
 yields
 ```javascript
