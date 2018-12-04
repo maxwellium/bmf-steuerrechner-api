@@ -12,3 +12,5 @@ export async function bmf(
   const xml = await query( getVersionOptions( year, month ), input );
   return await parse( xml );
 }
+
+export { BMFResponse };

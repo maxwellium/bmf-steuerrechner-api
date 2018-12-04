@@ -20,6 +20,7 @@ function getVersionOptions(year, month) {
         case 2016:
         case 2017:
         case 2018:
+        case 2019:
             version = `${year}Version1`;
             break;
         default:
