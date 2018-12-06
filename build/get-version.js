@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HOSTNAME = 'www.bmf-steuerrechner.de';
-exports.CODE = 'Lohn2018';
+exports.CODE = 'Lohn2019';
 function getVersionOptions(year, month) {
     let hostname = exports.HOSTNAME, version;
     switch (year) {

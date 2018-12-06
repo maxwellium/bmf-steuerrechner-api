@@ -1,7 +1,7 @@
 import { RequestOptions } from "https";
 
 export const HOSTNAME = 'www.bmf-steuerrechner.de';
-export const CODE = 'Lohn2018';
+export const CODE = 'Lohn2019';
 
 export function getVersionOptions( year: number, month?: number ): RequestOptions {
 

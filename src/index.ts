@@ -9,8 +9,13 @@ export async function bmf(
   year: number,
   month?: number
 ): Promise<BMFResponse> {
-  const xml = await query( getVersionOptions( year, month ), input );
-  return await parse( xml );
+  try {
+    const xml = await query( getVersionOptions( year, month ), input );
+    return await parse( xml );
+  } catch ( e ) {
+    console.log( e );
+    throw e;
+  }
 }
 
 export { BMFResponse };
